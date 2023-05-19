@@ -34,20 +34,20 @@ def getpost_url(user, password, page_url, n):
             try:
                 post_dict = ast.literal_eval(a)
                 post_id = post_dict['page_insights'][post_dict['actrs']]['targets'][0]['post_id']
-                print(post_id)
+                # print(post_id)
                 post_url = 'https://www.facebook.com/'+ post_id
                 posts_url.append(post_url)
             except:
                 print('loi')
         return posts_url
 
-x = getpost_url('datngobhlc@gmail.com','ygnZAE87', 'beatvn.network', 2)
-# m nen thay bang acc dang dung tren may cua m, t chua co them tinh nang dang nhap bang cookie nen co hoi loi ty
-print(x)
-posts = get_posts( post_urls = x )
+# x = getpost_url('datngobhlc@gmail.com','ygnZAE87', 'beatvn.network', 2)
+# # m nen thay bang acc dang dung tren may cua m, t chua co them tinh nang dang nhap bang cookie nen co hoi loi ty
+# print(x)
+# posts = get_posts(post_urls=x)
 
-for post in posts:
-    print(post)
+# for post in posts:
+#     print(post.keys())
 
 
 
