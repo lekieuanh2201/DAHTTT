@@ -15,3 +15,6 @@ Nhiệm vụ 2 tuần tới: Tiếp tục hoàn thiện các đầu mục công 
 2. Cài đặt, kết nối luồng Crawl->kafka->ElasticSearch  
 3. Xây dựng docker-compose và đẩy lên AWS  
 4. Code mô hình xác định hot topic và tha đổi cho phù hợp với mạng xã hội.  
+
+Công việc đã hoàn thành sau 2 tuần tiếp theo của sprin đầu tiên:
+1. Xây dựng docker-compose cho kafka, spark và elasticsearch
