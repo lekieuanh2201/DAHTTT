@@ -16,11 +16,17 @@ def getpost_url(user, password, page_url, n):
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, slow_mo=50)
-        page = browser.new_page()
-        page.goto('https://facebook.com')
-        page.fill('input#email', user )
-        page.fill('input#pass', password)
-        page.click('button[type=submit]')
+
+        context = browser.new_context({
+            storage_state: "./auth.json"
+        })
+        page = context.new_page()
+        # page.goto('https://facebook.com')
+        # page.fill('input#email', user )
+        # page.fill('input#pass', password)
+        # page.click('button[type=submit]')
+        print("alo")
+
         time.sleep(3)
         page.goto('https://touch.facebook.com/'+page_url)   
         time.sleep(1)
@@ -39,11 +45,12 @@ def getpost_url(user, password, page_url, n):
                 posts_url.append(post_url)
             except:
                 print('loi')
+        
         return posts_url
 
-# x = getpost_url('datngobhlc@gmail.com','ygnZAE87', 'beatvn.network', 2)
+x = getpost_url('datngobhlc@gmail.com','ygnZAE87', 'beatvn.network', 2)
 # # m nen thay bang acc dang dung tren may cua m, t chua co them tinh nang dang nhap bang cookie nen co hoi loi ty
-# print(x)
+print(x)
 # posts = get_posts(post_urls=x)
 
 # for post in posts:

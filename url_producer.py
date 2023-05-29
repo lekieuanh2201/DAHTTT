@@ -14,7 +14,7 @@ if __name__ == '__main__':
     url_prod = KafkaProducer(bootstrap_servers='localhost:9092')
         
     print("Starting crawling...")
-    schedule.every(20).seconds.do(kafka_get_post, url_prod, 'datngobhlc@gmail.com','ygnZAE87', 'beatvn.network', 2)
+    schedule.every(20).seconds.do(kafka_get_post, url_prod, '','', 'beatvn.network', 2)
     
     while True:
         schedule.run_pending()
