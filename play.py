@@ -5,7 +5,7 @@ from facebook_scraper import get_posts
 #beatvn.network 'datngobhlc@gmail.com' 'ygnZAE87'
 
 
-def getpost_url(user, password, page_url, n):
+def getpost_url( page_url, n):
     """
     input: url of public page (string)
            n = numberpost/15 (int)
@@ -17,15 +17,14 @@ def getpost_url(user, password, page_url, n):
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False, slow_mo=50)
 
-        context = browser.new_context({
-            storage_state: "./auth.json"
-        })
+        context = browser.new_context(storage_state='state.json')
+        
         page = context.new_page()
-        # page.goto('https://facebook.com')
-        # page.fill('input#email', user )
-        # page.fill('input#pass', password)
+
+        page.goto('https://facebook.com')
+        # page.fill('input#email', 'datngobhlc@gmail.com' )
+        # page.fill('input#pass', 'ygnZAE87')
         # page.click('button[type=submit]')
-        print("alo")
 
         time.sleep(3)
         page.goto('https://touch.facebook.com/'+page_url)   
@@ -45,10 +44,10 @@ def getpost_url(user, password, page_url, n):
                 posts_url.append(post_url)
             except:
                 print('loi')
-        
+        storage = context.storage_state(path="state.json")
         return posts_url
 
-x = getpost_url('datngobhlc@gmail.com','ygnZAE87', 'beatvn.network', 2)
+x = getpost_url('beatvn.network', 2)
 # # m nen thay bang acc dang dung tren may cua m, t chua co them tinh nang dang nhap bang cookie nen co hoi loi ty
 print(x)
 # posts = get_posts(post_urls=x)
