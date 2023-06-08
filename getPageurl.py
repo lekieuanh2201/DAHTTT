@@ -50,9 +50,11 @@ def searchPagebyKey(keyword):
                     print(page_brief)
 
             if score > 100000:
-                if pagetiengviet(page_describe):
-                    file.writelines(page_url)
-                    
+                try:
+                    if pagetiengviet(page_describe):
+                        file.writelines(page_url)
+                except:
+                    print("page nay rac qua khonog co description")
         storage = context.storage_state(path="state.json")
     
 searchPagebyKey('showbiz')
