@@ -1,0 +1,17 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.facebook.com	TRUE	/	TRUE	1719932907	sb	vznWY4Ly_Vf5GvYe14EXB30T
+.facebook.com	TRUE	/	TRUE	1720162803	datr	vznWYy-tu-bZBYpS7nDJ8jES
+.www.facebook.com	TRUE	/	TRUE	1718850271	m_ls	%7B%22c%22%3A%7B%221%22%3A%22HCwAABbmnLoCFsDo3p0OEwUWsO-yjqO9LQA%22%2C%222%22%3A%22GSwVQBxMAAAWMhbyz5rGDBYAABV-HEwAABYCFqTb68UMFgAAFigA%22%7D%2C%22d%22%3A%2256dc6df3-15c5-495f-a66a-986b71f23d72%22%2C%22s%22%3A%220%22%2C%22u%22%3A%22yw6hug%22%7D
+.facebook.com	TRUE	/	TRUE	1717677301	c_user	100008731237336
+.facebook.com	TRUE	/	TRUE	1693372560	m_page_voice	100008731237336
+.facebook.com	TRUE	/	TRUE	1686215235	cppo	1
+.facebook.com	TRUE	/	TRUE	1717677301	xs	50%3A7_lCDJcwdraKHQ%3A2%3A1685372905%3A-1%3A6322%3A%3AAcUvstqmEznazp4qxbI9pI3ppgxiVD7OW82r9bzkD1s
+.facebook.com	TRUE	/	TRUE	0	m_pixel_ratio	1
+.facebook.com	TRUE	/	TRUE	1693918647	fr	03WNDbVSpQDInqghz.AWUmO3Quw5xn4EloDblSNGbkR2M.BkgHl0.Ye.AAA.0.0.BkgH63.AWXVePVwxDg
+.facebook.com	TRUE	/	TRUE	0	x-referer	eyJyIjoiL2hvbWUucGhwIiwiaCI6Ii9ob21lLnBocCIsInMiOiJ0b3VjaCJ9
+.facebook.com	TRUE	/	TRUE	0	usida	eyJ2ZXIiOjEsImlkIjoiQXJ2dnY5cTE0emJsZzIiLCJ0aW1lIjoxNjg2MTQyOTY3fQ%3D%3D
+.facebook.com	TRUE	/	TRUE	1686749007	wd	1318x645
+.facebook.com	TRUE	/	TRUE	0	presence	C%7B%22lm3%22%3A%22g.5165815296787301%22%2C%22t3%22%3A%5B%7B%22i%22%3A%22u.100009258442579%22%7D%2C%7B%22i%22%3A%22u.100042211368853%22%7D%5D%2C%22utc3%22%3A1686144236834%2C%22v%22%3A1%7D
