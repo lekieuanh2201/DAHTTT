@@ -6,6 +6,7 @@ import pandas as pd
 from vncorenlp import VnCoreNLP
 import gensim.corpora as corpora
 from gensim.models.ldamodel import LdaModel
+# from elastic_search import Elasticsearch
 
 from topic_modeling import models
 
@@ -77,8 +78,21 @@ def make_bigram(texts):
             new_text.append(bigram)
         yield(new_text)
 
-def topic_modeling(request, csv_file):
-    df = pd.read_csv(csv_file, header=None)
+def topic_modeling(request, category, es):
+
+    index_name = category
+    search_query = {
+    "query": {
+        "match_all": {}  # Retrieve all documents
+            }}
+    
+    response = es.search(index=index_name, body=search_query, size=1000)  # Adjust the size as needed
+    hits = response['hits']['hits']
+
+    data = [hit['_source'] for hit in hits]
+    df = pd.DataFrame(data)
+
+    # df = pd.read_csv(csv_file, header=None)
     raw_data = df[1]
 
     data = [clean_text(str(sample)) for sample in raw_data]
@@ -100,7 +114,7 @@ def topic_modeling(request, csv_file):
     data_words = list(sent_to_words(data_seg))
 
     stop_words = []
-    with open('vietnamese-stopwords-dash.txt', 'r', encoding='utf-8') as f:
+    with open('./static/vietnamese-stopwords-dash.txt', 'r', encoding='utf-8') as f:
         lines = f.readlines()
         for line in lines:
             stop_words.append(line[:-1])
