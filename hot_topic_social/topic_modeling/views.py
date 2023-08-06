@@ -5,6 +5,7 @@ from django.http import JsonResponse
 import pandas as pd
 from vncorenlp import VnCoreNLP
 import gensim.corpora as corpora
+from gensim.utils import simple_preprocess
 from gensim.models.ldamodel import LdaModel
 
 from topic_modeling import models
@@ -67,7 +68,7 @@ def sent_to_words(sentences):
         yield(sentence.split(' '))
 
 def remove_stopwords(texts, stop_words):
-    return [[word for word in doc if word not in stop_words] for doc in texts]
+    return [[word for word in simple_preprocess(doc) if word not in stop_words] for doc in texts]
 
 def make_bigram(texts):
     for text in texts:
