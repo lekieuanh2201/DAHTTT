@@ -104,11 +104,11 @@ def Login2Fa(email, password, code, page:Page):
     page.click('button[type=submit]')
 
 def CrawlPost(page:Page, postId):
-    page.goto('https://facebook.com'+str(postId))
+    page.goto('https://facebook.com/'+str(postId))
     selector = page.query_selector('div.rq0escxv.l9j0dhe7.du4w35lb')
         # I save html code in variable to parse it by beautifulSoup
-    html = selector.inner_html()
-    return html
+    print(selector)
+    return selector
 
 def main():
     with sync_playwright() as p:
@@ -118,6 +118,7 @@ def main():
         page = context.new_page()
         Login2Fa(mail2, pass2, code2, page)
         html = CrawlPost(page, 660408116111098)
+        print(html)
         return html
 main()
 
