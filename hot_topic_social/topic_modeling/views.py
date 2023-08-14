@@ -9,7 +9,7 @@ from gensim.utils import simple_preprocess
 from gensim.models.ldamodel import LdaModel
 # from elastic_search import Elasticsearch
 
-from .models import Topic
+# from .models import Topic
 from .ai_model import topic_modeling, get_posts_from_ids
 
 # Create your views here.
@@ -30,33 +30,33 @@ from .ai_model import topic_modeling, get_posts_from_ids
 #     return JsonResponse(context)
 
 
-def get_hot_topics(request):
-    topics = Topic.objects.order_by('-add_time')
-    topic_names = []
-    if topics:
-        for topic in topics:
-            topic_names.append(topic['name'])
+# def get_hot_topics(request):
+#     topics = Topic.objects.order_by('-add_time')
+#     topic_names = []
+#     if topics:
+#         for topic in topics:
+#             topic_names.append(topic['name'])
 
-    context = {
-        'topic_names': topic_names,
-    }
+#     context = {
+#         'topic_names': topic_names,
+#     }
 
-    return JsonResponse(context)
+#     return JsonResponse(context)
 
 
-def get_trending_posts(request):
-    topics = Topic.objects.order_by('-add_time')
-    post_ids = []
-    if topics:
-        for topic in topics:
-            post_ids.append(topic['post_ids_list'].split('_')[0])
+# def get_trending_posts(request):
+#     topics = Topic.objects.order_by('-add_time')
+#     post_ids = []
+#     if topics:
+#         for topic in topics:
+#             post_ids.append(topic['post_ids_list'].split('_')[0])
 
-    post_texts = get_posts_from_ids(post_ids)
-    context = {
-        'post_texts': post_texts,
-    }
+#     post_texts = get_posts_from_ids(post_ids)
+#     context = {
+#         'post_texts': post_texts,
+#     }
 
-    return JsonResponse(context)
+#     return JsonResponse(context)
 
 
 # def topic_modeling(request, category, es):
@@ -130,3 +130,7 @@ def get_trending_posts(request):
 
 def predict_topics(request):
     topic_modeling()
+
+    context = {}
+
+    return JsonResponse(context)
