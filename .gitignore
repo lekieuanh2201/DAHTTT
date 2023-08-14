@@ -1,7 +1,6 @@
 venv/
 *__pycache__*
 *.model
-*.jar
 hs_err_pid*
 replay_pid*
 model_lda_100*

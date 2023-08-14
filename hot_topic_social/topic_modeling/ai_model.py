@@ -15,7 +15,7 @@ from vncorenlp import VnCoreNLP
 # from .models import Topic
 
 
-os.environ['JAVA_HOME'] = 'C:\\Program Files\\Java\\jdk-1.8'
+os.environ['JAVA_HOME'] = 'C:/Program Files/Java/jdk1.8.0_202'
 data_dir = '../data/'
 es = None
 spark = None
