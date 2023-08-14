@@ -12,7 +12,7 @@ import gensim.corpora as corpora
 import pandas as pd
 
 from vncorenlp import VnCoreNLP
-from .models import Topic
+# from .models import Topic
 
 
 os.environ['JAVA_HOME'] = 'C:\\Program Files\\Java\\jdk-1.8'
@@ -187,12 +187,12 @@ def topic_modeling():
     for i, row in df_dominant_topic.iterrows():
         dict[row['Keywords']].append(row['Post_Id'])
     
-    now = datetime.now()
-    for key, items in dict.items():
-        print(key)
-        items = [str(item) for item in items]
-        p = Topic(name=key, add_time = now, post_ids_list='_'.join(items))
-        p.save()
+    # now = datetime.now()
+    # for key, items in dict.items():
+    #     print(key)
+    #     items = [str(item) for item in items]
+    #     p = Topic(name=key, add_time = now, post_ids_list='_'.join(items))
+    #     p.save()
     
     topics = lda_model.print_topics()
     print(topics)
