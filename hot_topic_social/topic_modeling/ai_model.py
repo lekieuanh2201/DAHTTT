@@ -14,7 +14,7 @@ from vncorenlp import VnCoreNLP
 data_dir = '../data/'
 es = Elasticsearch("http://localhost:9200")
 spark = None
-rdrsegmenter = VnCoreNLP("topic_modeling\\vncorenlp\\VnCoreNLP-1.1.1.jar", annotators="wseg", max_heap_size='-Xmx500m')
+rdrsegmenter = VnCoreNLP("topic_modeling/vncorenlp/VnCoreNLP-1.1.1.jar", annotators="wseg", max_heap_size='-Xmx500m')
 stop_words = []
 
 def clean_text(text):

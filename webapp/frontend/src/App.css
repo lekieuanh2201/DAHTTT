@@ -202,3 +202,13 @@ li.selected {
   background-color: #ffffff !important;
   margin: 0 auto;
 }
+.post-search-area {
+  align-content: center;
+  margin-top: 20px;
+}
+.post-card-search{
+  max-width: 520px;
+  margin-top: 10px;
+  background-color: #ffffff !important;
+  margin: 0 auto;
+}
