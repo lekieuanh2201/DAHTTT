@@ -1,27 +1,36 @@
-import {React, useState} from 'react'
+import {React, useEffect, useState} from 'react'
 import photo from '../img/headerphoto.png'
-import top10 from '../img/Component 1.png'
-import top5 from '../img/Component 2.png'
-import DatePicker from "react-datepicker";
-import PostCard from '../components/PostCard';
-import Top5Tab from '../components/Top5Tab';
-import { MDBDropdown, MDBDropdownItem, MDBDropdownToggle, MDBDropdownMenu } from 'mdb-react-ui-kit';
 import HotTopicCard from '../components/HotTopicCard';
-import data from '../data_topics.json'
+import axios from 'axios';
+// import data from '../data_topics.json'
 
 // Hot topics
 const HotTopics = () => {
-  const [date, setDate] = useState(new Date());
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    try {
+      const result = await axios.get("http://localhost:8000/get_hot_topics/");
+      // console.log(typeof result.data.topic_names.slice(0, 5));
+      setData(result.data.topic_names);
+    } catch (error) {
+      console.error("Error loading data:", error);
+    }
+    
+  }
 
   const [selectedOption, setSelectedOption] = useState('10');
   const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
    
   };
+  console.log(data)
+  // console.log(data.topic_names)
 
-  const hotTopics = data.topic_names.slice(0, selectedOption);
+  const hotTopics = data.slice(0, selectedOption);
 
   return (
     <>

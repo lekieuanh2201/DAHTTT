@@ -12,24 +12,29 @@ import PostCardSearch from '../components/PostCardSearch';
 
 
 const Home = () => {
-  const [date, setDate] = useState(new Date());
+  
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   
-  // load data from db using api
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   loadData();
-  // }, []);
+  //load data from db using api
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    loadData();
+  }, []);
 
-  // const loadData = async () => {
-  //   const result = await axios.get("http://127.0.0.1:8000/get_trending_posts/");
-  //   setData(result.data.post_texts);
-  //   console.log(result.data)
-  // }
+  const loadData = async () => {
+    try {
+      const result = await axios.get("http://localhost:8000/get_trending_posts/");
+      setData(result.data.post_texts);
+    // console.log(result.data)
+    } catch (error) {
+      console.error("Error loading data:", error);
+    }
+  
+  }
 
   
-  const posts = data.post_texts
+  const posts = data
 
   // filter post to date
   const filteredPosts = posts.filter(post => {
@@ -65,7 +70,7 @@ const Home = () => {
   // handle search
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get('q') || '';
-  console.log(searchQuery.length)
+  
 
   const searchPosts = posts.filter((post) =>
     post.text.toLowerCase().includes(searchQuery.toLowerCase())
