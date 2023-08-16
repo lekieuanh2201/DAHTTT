@@ -7,4 +7,5 @@ class TopicModelingConfig(AppConfig):
     name = "topic_modeling"
 
     def ready(self):
-        load()
+        # load()
+        pass

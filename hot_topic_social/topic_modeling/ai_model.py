@@ -1,25 +1,20 @@
 import os
 import string
 import re
-from datetime import datetime
 
 from unidecode import unidecode
 from elasticsearch import Elasticsearch
 from pyspark.sql import SparkSession
-from gensim.utils import simple_preprocess
 from gensim.models.ldamodel import LdaModel
 import gensim.corpora as corpora
 import pandas as pd
-
 from vncorenlp import VnCoreNLP
-# from .models import Topic
 
 
-os.environ['JAVA_HOME'] = '/usr/lib/jvm/java-8-openjdk-amd64'
 data_dir = '../data/'
-es = None
+es = Elasticsearch("http://localhost:9200")
 spark = None
-rdrsegmenter = None
+rdrsegmenter = VnCoreNLP("topic_modeling\\vncorenlp\\VnCoreNLP-1.1.1.jar", annotators="wseg", max_heap_size='-Xmx500m')
 stop_words = []
 
 def clean_text(text):
@@ -74,6 +69,7 @@ def format_topics_sentences(ldamodel, corpus, ids):
     sent_topics_df = pd.concat([sent_topics_df, contents], axis=1)
     return(sent_topics_df)
 
+
 def load():
     global es, spark, rdrsegmenter, stop_words
     es = Elasticsearch("http://localhost:9200")
@@ -112,6 +108,9 @@ def load():
         except:
             continue
 
+    spark.stop()
+
+
 def topic_modeling():
     global es, stop_words
     indices = es.cat.indices(format="json")
@@ -132,11 +131,12 @@ def topic_modeling():
 
     df = pd.DataFrame(all_data)
     
+    likes_list = list(df['likes'])
     post_ids_list = list(df['post_id'])
     raw_data = list(df['text'])
-    print(raw_data[0])
-    print(type(raw_data[0]))
-    print(clean_text(raw_data[0]))
+    # print(raw_data[0])
+    # print(type(raw_data[0]))
+    # print(clean_text(raw_data[0]))
     data = []
     for sample in raw_data:
         data.append(clean_text(sample))
@@ -174,7 +174,7 @@ def topic_modeling():
                          alpha='auto',
                          per_word_topics=True)
     
-    lda_model.save("model_lda_100.model")
+    lda_model.save("../model/model_lda_100.model")
 
     df_topic_sents_keywords = format_topics_sentences(lda_model, corpus, post_ids_list)
     df_dominant_topic = df_topic_sents_keywords.reset_index()
@@ -187,15 +187,10 @@ def topic_modeling():
     for i, row in df_dominant_topic.iterrows():
         dict[row['Keywords']].append(row['Post_Id'])
     
-    # now = datetime.now()
-    # for key, items in dict.items():
-    #     print(key)
-    #     items = [str(item) for item in items]
-    #     p = Topic(name=key, add_time = now, post_ids_list='_'.join(items))
-    #     p.save()
-    
     topics = lda_model.print_topics()
-    print(topics)
+    # print(topics)
+
+    return dict
 
 
 def get_posts_from_ids(post_ids):
