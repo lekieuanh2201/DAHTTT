@@ -3,10 +3,18 @@ from datetime import datetime
 from django.http import JsonResponse
 
 from .models import Topic
-from .ai_model import topic_modeling, get_posts_from_ids
+from .ai_model import topic_modeling, get_posts_from_ids, load
 
 
 # Create your views here.
+def load_data(request):
+    load()
+    context = {
+        'status': "Insert Done!",
+    }
+
+    return JsonResponse(context)
+
 def get_hot_topics(request):
     topics = Topic.objects.order_by('-add_time')
     topic_names = []
@@ -45,3 +53,9 @@ def predict_topics(request):
         items = [str(item) for item in items]
         p = Topic(name=key, add_time = now, post_ids_list='_'.join(items))
         p.save()
+    # print(p)
+    # context = {
+    #     'post_texts': str(p),
+    # }
+
+    return JsonResponse(dict)
