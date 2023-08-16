@@ -15,7 +15,7 @@ from vncorenlp import VnCoreNLP
 # from .models import Topic
 
 
-os.environ['JAVA_HOME'] = 'C:/Program Files/Java/jdk1.8.0_202'
+os.environ['JAVA_HOME'] = '/usr/lib/jvm/java-8-openjdk-amd64'
 data_dir = '../data/'
 es = None
 spark = None
@@ -82,8 +82,8 @@ def load():
         .config("spark.driver.memory", "2g") \
         .config("spark.executor.memory", "2g") \
         .getOrCreate()
-    rdrsegmenter = VnCoreNLP("topic_modeling\\vncorenlp\\VnCoreNLP-1.1.1.jar", annotators="wseg", max_heap_size='-Xmx500m')
-    with open('topic_modeling\\vietnamese-stopwords-dash.txt', 'r', encoding='utf-8') as f:
+    rdrsegmenter = VnCoreNLP("topic_modeling/vncorenlp/VnCoreNLP-1.1.1.jar", annotators="wseg", max_heap_size='-Xmx500m')
+    with open('topic_modeling/vietnamese-stopwords-dash.txt', 'r', encoding='utf-8') as f:
         lines = f.readlines()
         for line in lines:
             stop_words.append(line[:-1])
