@@ -104,7 +104,8 @@ def load():
                     'likes': int(x['likes']),
                     'comments': int(x['comments']),
                 }
-            es.index(index=normalize_index(x['page']), document=data)
+            # es.index(index=normalize_index(x['page']), document=data)
+            es.index(index=data['post_id'], document=data)
         except:
             continue
 
