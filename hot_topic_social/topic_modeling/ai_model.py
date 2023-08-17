@@ -14,7 +14,7 @@ from vncorenlp import VnCoreNLP
 data_dir = '../data/'
 es = Elasticsearch("http://localhost:9200")
 spark = None
-rdrsegmenter = VnCoreNLP("topic_modeling\\vncorenlp\\VnCoreNLP-1.1.1.jar", annotators="wseg", max_heap_size='-Xmx500m')
+rdrsegmenter = VnCoreNLP("topic_modeling/vncorenlp/VnCoreNLP-1.1.1.jar", annotators="wseg", max_heap_size='-Xmx500m')
 stop_words = []
 
 def clean_text(text):
@@ -78,8 +78,8 @@ def load():
         .config("spark.driver.memory", "2g") \
         .config("spark.executor.memory", "2g") \
         .getOrCreate()
-    rdrsegmenter = VnCoreNLP("topic_modeling\\vncorenlp\\VnCoreNLP-1.1.1.jar", annotators="wseg", max_heap_size='-Xmx500m')
-    with open('topic_modeling\\vietnamese-stopwords-dash.txt', 'r', encoding='utf-8') as f:
+    rdrsegmenter = VnCoreNLP("topic_modeling/vncorenlp/VnCoreNLP-1.1.1.jar", annotators="wseg", max_heap_size='-Xmx500m')
+    with open('topic_modeling/vietnamese-stopwords-dash.txt', 'r', encoding='utf-8') as f:
         lines = f.readlines()
         for line in lines:
             stop_words.append(line[:-1])
